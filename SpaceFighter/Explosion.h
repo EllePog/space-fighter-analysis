@@ -31,7 +31,7 @@ public:
 
 	/** @brief Checks if the explosion is active.
 		@return True if the explosion is active. */
-	virtual bool IsActive() const { return m_pAnimation->IsPlaying(); }
+	virtual bool IsActive() const { return m_pAnimation->IsPlaying();}
 
 	/** @brief Set the sound that will be played when the explosion is activated.
 		@param pSound A pointer to the audio sample. */
