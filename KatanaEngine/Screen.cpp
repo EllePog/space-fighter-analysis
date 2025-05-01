@@ -97,6 +97,10 @@ namespace KatanaEngine
 		TransitionIn();
 	}
 
+	void Screen::ShowOut() {
+		TransitionOut();
+	}
+
 	void Screen::Exit()
 	{
 		m_isExiting = true;

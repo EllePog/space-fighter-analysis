@@ -13,7 +13,6 @@ void Level02::LoadContent(ResourceManager& resourceManager)
 
 	double xPositions[COUNT] =
 	{
-		0.9, 0.2, 0.3,
 		0.75, 0.8, 0.35,
 		0.3, 0.25, 0.35, 0.9, 0.4,
 		0.7, 0.4, 0.65, 0.8, 0.6,
@@ -24,7 +23,6 @@ void Level02::LoadContent(ResourceManager& resourceManager)
 
 	double delays[COUNT] =
 	{
-		0.0, 0.25, 0.25,
 		3.0, 0.25, 0.25,
 		3.25, 0.25, 0.25, 0.25, 0.25,
 		3.25, 0.25, 0.25, 0.25, 0.25,

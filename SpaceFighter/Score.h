@@ -9,7 +9,9 @@ private:
 	mutable int m_score;
 	int hit = 1;
 	int targetScore = 15;
-	
+	static bool m_Madeit;
+	static bool m_Aquired;
+	static int m_targetScore;
 
 public:
 	mutable bool madeIt = false;
@@ -18,18 +20,19 @@ public:
 
 	Score() {};
 
-	virtual int Hit() const;
+	virtual int Hit() {	m_score = score++; return m_score; };
 
-	virtual void GetScore() const { std::cout << "\n" << score << "\n"; }
+	virtual void GetScore() { std::cout << "\n" << score << "\n"; TargetAquired(); }
 
-	virtual int UpdateScore() const;
+	virtual int UpdateScore();
 
-	virtual bool TargetAquired() const;
+	static bool TargetAquired() {
+		if (score == m_targetScore) { return m_Aquired = true; }
+		else { return m_Aquired = false; }
+	}
 
-	void MadeIt() const { if (TargetAquired() == true) { std::cout << "\nMade it."; madeIt = true; } }
+	static void NextLevel() { m_Aquired = false; }
 
-	virtual void NextLevel() const;
-
-	virtual void ResetScore() const;
+	static void ResetScore();
 };
 

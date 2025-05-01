@@ -3,6 +3,7 @@
 #include "EnemyShip.h"
 #include "Blaster.h"
 #include "GameplayScreen.h"
+#include "Screen.h"
 #include "Score.h"
 
 std::vector<Explosion *> Level::s_explosions;
@@ -118,6 +119,7 @@ void Level::HandleInput(const InputState& input)
 
 void Level::Update(const GameTime& gameTime)
 {
+	Score* hit = new Score();
 	for (unsigned int i = 0; i < m_totalSectorCount; i++)
 	{
 		m_pSectors[i].clear();
@@ -140,11 +142,11 @@ void Level::Update(const GameTime& gameTime)
 	
 	for (Explosion *pExplosion : s_explosions) pExplosion->Update(gameTime);
 
-	if (!m_pPlayerShip->IsActive()) {
-		Score* hit = new Score();
-		hit->ResetScore();		
+	if (!m_pPlayerShip->IsActive()) { hit->ResetScore(); GetGameplayScreen()->Exit(); }
+
+	if (m_pPlayerShip->IsActive() && Score::TargetAquired() == true) {
 		GetGameplayScreen()->Exit();
-		}
+	}
 		
 		
 }
