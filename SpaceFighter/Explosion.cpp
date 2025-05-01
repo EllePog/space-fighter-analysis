@@ -1,4 +1,7 @@
 #include "Explosion.h"
+#include "Score.h"
+
+
 
 void Explosion::Update(const GameTime& gameTime)
 {
@@ -24,5 +27,10 @@ void Explosion::Activate(const Vector2 position, const float scale)
 	m_pAnimation->SetLoopCount(0);
 	m_pAnimation->Play();
 	std::cout << "Someone Exploded \n";
+	Score *hit = new Score();
+	hit->Hit();
+	hit->UpdateScore();
+	hit->GetScore();
+	hit->MadeIt();
 	if (m_pSound) m_pSound->Play();
 }

@@ -3,6 +3,8 @@
 #include "MainMenuScreen.h"
 #include "Level.h"
 #include "Level02.h"
+#include "Level01.h"
+#include "Score.h"
 
 GameplayScreen::GameplayScreen(const int levelIndex)
 	: m_levelIndex(levelIndex)
@@ -18,7 +20,13 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 void GameplayScreen::LoadContent(ResourceManager& resourceManager)
 {
 	m_pResourceManager = &resourceManager;
+	Score* hit = new Score();
+	hit->ResetScore();
+		if (hit->madeIt == true) {
+			m_levelIndex = 1;
+		}
 	LoadLevel(m_levelIndex);
+	
 }
 
 void GameplayScreen::LoadLevel(const int levelIndex)
@@ -27,7 +35,8 @@ void GameplayScreen::LoadLevel(const int levelIndex)
 
 	switch (levelIndex)
 	{
-	case 0: m_pLevel = new Level02(); break;
+	case 0: m_pLevel = new Level01(); break;
+	case 1: m_pLevel = new Level02(); break;
 	}
 
 	m_pLevel->SetGameplayScreen(this);

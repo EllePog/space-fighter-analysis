@@ -1,7 +1,6 @@
 #pragma once
 
 #include "KatanaEngine.h"
-
 using namespace KatanaEngine;
 
 /** @brief The main menu screen for the game. */

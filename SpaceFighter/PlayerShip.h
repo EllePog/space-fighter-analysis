@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Ship.h"
+#include "Score.h"
 
 /** @brief Represents the player's ship. */
 class PlayerShip : public Ship
@@ -49,7 +50,8 @@ public:
 
 	/** @brief Gets the collision type of the player ship.
 		@return Returns the collision type of the player ship. */
-	virtual CollisionType GetCollisionType() const { return (CollisionType::Player | CollisionType::Ship); }
+	virtual CollisionType GetCollisionType() const { return (CollisionType::Player | CollisionType::Ship);
+	}
 
 	/** @brief Prevents the player ship from moving off the screen.
 		@param isConfined True to confine the player ship to the screen, false otherwise. */

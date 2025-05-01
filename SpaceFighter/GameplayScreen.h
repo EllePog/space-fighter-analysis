@@ -45,7 +45,7 @@ public:
 
 private:
 
-	int m_levelIndex = 0;
+	mutable int m_levelIndex = 0;
 
 	Level *m_pLevel = nullptr;
 
