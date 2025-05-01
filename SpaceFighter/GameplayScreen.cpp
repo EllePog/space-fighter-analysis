@@ -21,10 +21,10 @@ void GameplayScreen::LoadContent(ResourceManager& resourceManager)
 {
 	m_pResourceManager = &resourceManager;
 	Score* hit = new Score();
+	if (hit->madeIt == true) {
+		m_levelIndex = 1;
+	}
 	hit->ResetScore();
-		if (hit->madeIt == true) {
-			m_levelIndex = 1;
-		}
 	LoadLevel(m_levelIndex);
 	
 }
