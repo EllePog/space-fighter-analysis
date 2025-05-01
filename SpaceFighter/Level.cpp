@@ -3,6 +3,7 @@
 #include "EnemyShip.h"
 #include "Blaster.h"
 #include "GameplayScreen.h"
+#include "Score.h"
 
 std::vector<Explosion *> Level::s_explosions;
 
@@ -139,7 +140,13 @@ void Level::Update(const GameTime& gameTime)
 	
 	for (Explosion *pExplosion : s_explosions) pExplosion->Update(gameTime);
 
-	if (!m_pPlayerShip->IsActive()) GetGameplayScreen()->Exit();
+	if (!m_pPlayerShip->IsActive()) {
+		Score* hit = new Score();
+		hit->ResetScore();		
+		GetGameplayScreen()->Exit();
+		}
+		
+		
 }
 
 

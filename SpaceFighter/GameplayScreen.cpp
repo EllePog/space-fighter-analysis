@@ -24,7 +24,6 @@ void GameplayScreen::LoadContent(ResourceManager& resourceManager)
 	if (hit->madeIt == true) {
 		m_levelIndex = 1;
 	}
-	hit->ResetScore();
 	LoadLevel(m_levelIndex);
 	
 }

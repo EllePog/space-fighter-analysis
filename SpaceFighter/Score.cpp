@@ -28,6 +28,5 @@ void Score::NextLevel() const {
 
 void Score::ResetScore() const {
 	score = 0;
-	std::cout << score;
 	return;
 }
