@@ -5,7 +5,6 @@
 #include "Level02.h"
 #include "Level01.h"
 #include "Score.h"
-#include "Score.cpp"
 
 GameplayScreen::GameplayScreen(const int levelIndex)
 	: m_levelIndex(levelIndex)
@@ -20,9 +19,8 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 
 void GameplayScreen::LoadContent(ResourceManager& resourceManager)
 {
-	m_pResourceManager = &resourceManager;
-	Score* hit = new Score();
-	if (hit->madeIt == true) {
+	m_pResourceManager = &resourceManager;;
+	if (Score::TargetAquired() == true) {
 		m_levelIndex = 1;
 	}
 	LoadLevel(m_levelIndex);
