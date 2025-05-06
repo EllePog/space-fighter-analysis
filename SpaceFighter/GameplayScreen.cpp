@@ -31,12 +31,11 @@ void GameplayScreen::LoadLevel(int levelIndex)
 {
 	if (m_pLevel) delete m_pLevel;
 	if (Score::TargetAquired() == true) {
-		levelIndex = 1; std::cout << "\nThis should be level 1.";
+		levelIndex = 1;
 	}
 	else
 	{
 		levelIndex = 0;
-		std::cout << "\nThis should be level 0.";
 	}
 
 	switch (levelIndex)
@@ -49,7 +48,8 @@ void GameplayScreen::LoadLevel(int levelIndex)
 	m_pLevel->LoadContent(*m_pResourceManager);
 	Score::NextLevel();
 	Score::ResetScore();
-	std::cout << "\nThis should be level 1 not 0";
+	Score::StartTimer();
+	
 }
 
 void GameplayScreen::HandleInput(const InputState& input)
