@@ -28,14 +28,16 @@ public:
 
 	virtual int Hit() {	m_score = score++; return m_score; };
 
-	virtual void GetScore() { std::cout << "\n" << score << "\n"; TargetAquired(); }
+	virtual void GetScore() {
+		std::cout << "\n" << score << "\n"; TargetAquired();
+	}
 
 	virtual int UpdateScore() {	m_score = score; return score;
 	};
 
 	static bool TargetAquired() {
-		if (score == targetScore) { return m_Aquired = true; }
-		else { return m_Aquired = false; }
+		if (score >= targetScore) { m_Aquired = true; return m_Aquired; }
+		else { m_Aquired = false; return m_Aquired; }
 	}
 
 	static void StartTimer() {
@@ -61,7 +63,6 @@ public:
 			}
 		}
 	}
-
 
 	static void NextLevel() { m_Aquired = false; }
 

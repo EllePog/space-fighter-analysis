@@ -30,5 +30,6 @@ void Explosion::Activate(const Vector2 position, const float scale)
 	hit->Hit();
 	hit->UpdateScore();
 	hit->GetScore();
+	Score::TargetAquired();
 	if (m_pSound) m_pSound->Play();
 }

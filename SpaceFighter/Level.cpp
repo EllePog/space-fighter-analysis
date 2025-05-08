@@ -147,6 +147,7 @@ void Level::Update(const GameTime& gameTime)
 	if (m_pPlayerShip->IsActive() && Score::DoneStatus() == true) {
 		GetGameplayScreen()->Exit();
 		Score::ResetTimer();
+		if (Score::TargetAquired() == true) { cout << "Target Aquired"; }
 	}
 			
 }
