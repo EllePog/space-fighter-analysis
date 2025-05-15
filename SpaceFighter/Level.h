@@ -109,6 +109,11 @@ public:
 		return pClosest;
 	}
 
+	//virtual int TargetAquired() const;
+
+	virtual void SetLevelIndex(const int levelIndex) {if (m_levelIndex == 2) { m_levelIndex = 0; }  m_levelIndex = levelIndex; }
+
+	virtual void IncrementScore() const;
 
 protected:
 
@@ -163,5 +168,12 @@ private:
 	virtual unsigned int GetTotalSectorCount() const { return m_totalSectorCount; }
 
 	virtual std::vector<GameObject*>* GetSectors() { return m_pSectors; }
+
+	int m_levelIndex = 0;
+	mutable bool m_enemyQuotaMet = false;
+	mutable int score = 0;
+	mutable int m_score = 0;
+	int hit = 1;
+	int targetScore = 15;
 
 };

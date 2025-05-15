@@ -2,7 +2,6 @@
 #pragma once
 
 #include "Ship.h"
-#include "Score.h"
 
 /** @brief Represents the player's ship. */
 class PlayerShip : public Ship

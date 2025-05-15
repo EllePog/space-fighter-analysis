@@ -58,5 +58,4 @@ private:
 
 	float m_rotation = 0;
 	float m_scale = 1;
-
 };

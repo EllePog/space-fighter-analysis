@@ -4,7 +4,9 @@
 #include "Level.h"
 #include "Level02.h"
 #include "Level01.h"
-#include "Score.h"
+
+
+
 
 GameplayScreen::GameplayScreen(const int levelIndex)
 	: m_levelIndex(levelIndex)
@@ -20,24 +22,25 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 void GameplayScreen::LoadContent(ResourceManager& resourceManager)
 {
 	m_pResourceManager = &resourceManager;;
-	if (Score::TargetAquired() == true) {
-		m_levelIndex = 1;
-	}
+	//if (m_pLevel && m_pLevel->TargetAquired()) {
+	//	m_levelIndex = 1;
+	//}
 	LoadLevel(m_levelIndex);
 	
 }
 
-void GameplayScreen::LoadLevel(int levelIndex)
-{
-	if (m_pLevel) delete m_pLevel;
-	if (Score::TargetAquired() == true) {
-		levelIndex = 1;
-	}
-	else
-	{
-		levelIndex = 0;
-	}
 
+void GameplayScreen::LoadLevel(int levelIndex)
+  {	
+	//if  (m_pLevel && m_pLevel->TargetAquired()) {
+	//	levelIndex = 1;
+	//}
+	//else
+	//{
+	//	levelIndex = 0;
+	//}
+	if (levelIndex == 2) { levelIndex = 0; m_levelIndex = 0; }
+	if (m_pLevel) delete m_pLevel;
 	switch (levelIndex)
 	{
 	case 0: m_pLevel = new Level01(); break;
@@ -46,9 +49,8 @@ void GameplayScreen::LoadLevel(int levelIndex)
 	std::cout << "\nThis is actually level " << levelIndex;
 	m_pLevel->SetGameplayScreen(this);
 	m_pLevel->LoadContent(*m_pResourceManager);
-	Score::NextLevel();
-	Score::ResetScore();
-	Score::StartTimer();
+	m_pLevel->SetLevelIndex(levelIndex);
+	//m_pLevel->NextLevel();
 	
 }
 

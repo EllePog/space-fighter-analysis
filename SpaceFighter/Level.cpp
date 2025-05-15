@@ -4,9 +4,12 @@
 #include "Blaster.h"
 #include "GameplayScreen.h"
 #include "Screen.h"
-#include "Score.h"
 
 std::vector<Explosion *> Level::s_explosions;
+
+// super globals --- need to not exist
+
+
 
 // Collision Callback Functions
 
@@ -18,6 +21,9 @@ void PlayerShootsEnemy(GameObject *pObject1, GameObject *pObject2)
 	Projectile *pPlayerProjectile = (Projectile *)((!m) ? pObject1 : pObject2);
 	pEnemyShip->Hit(pPlayerProjectile->GetDamage());
 	pPlayerProjectile->Deactivate();
+
+	Level* pLevel = pEnemyShip->GetCurrentLevel();
+	pLevel->IncrementScore();
 }
 
 /** brief Callback function for when the player collides with an enemy. */
@@ -117,9 +123,18 @@ void Level::HandleInput(const InputState& input)
 }
 
 
+void Level::IncrementScore() const {
+
+	m_score = score++;
+	std::cout << score;
+	if (score == targetScore) { m_enemyQuotaMet = true; score = 0; m_score = 0; }
+}
+
+
+
 void Level::Update(const GameTime& gameTime)
 {
-	Score::TimeForNextLevel();
+	
 	for (unsigned int i = 0; i < m_totalSectorCount; i++)
 	{
 		m_pSectors[i].clear();
@@ -142,12 +157,11 @@ void Level::Update(const GameTime& gameTime)
 	
 	for (Explosion *pExplosion : s_explosions) pExplosion->Update(gameTime);
 
-	if (!m_pPlayerShip->IsActive()) { Score::ResetScore(); GetGameplayScreen()->Exit(); }
+	if (!m_pPlayerShip->IsActive()) { score = 0; m_score = 0; GetGameplayScreen()->Exit(); }
 
-	if (m_pPlayerShip->IsActive() && Score::DoneStatus() == true) {
-		GetGameplayScreen()->Exit();
-		Score::ResetTimer();
-		if (Score::TargetAquired() == true) { cout << "Target Aquired"; }
+	if (m_pPlayerShip->IsActive() && m_enemyQuotaMet) {
+		GetGameplayScreen()->LoadLevel(m_levelIndex + 1);
+		std::cout << "Target Aquired"; 
 	}
 			
 }

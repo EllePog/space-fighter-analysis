@@ -1,5 +1,4 @@
 #include "Explosion.h"
-#include "Score.h"
 
 
 
@@ -26,10 +25,5 @@ void Explosion::Activate(const Vector2 position, const float scale)
 	m_rotation = Math::GetRandomFloat() * 2 * Math::PI;
 	m_pAnimation->SetLoopCount(0);
 	m_pAnimation->Play();
-	Score *hit = new Score();
-	hit->Hit();
-	hit->UpdateScore();
-	hit->GetScore();
-	Score::TargetAquired();
 	if (m_pSound) m_pSound->Play();
 }
